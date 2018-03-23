@@ -1,0 +1,17 @@
+
+				<ul>
+				<%for(var i in result){%>
+					<li>
+					<div class="p-img">
+	<img src="<%=result[i].thum_img.big%>" alt="" width="160px" height="160px">
+						</div>
+						<div class="p-name">
+							<%=result[i].brand_name%>
+						</div>
+						<div class="p-price">
+						￥<%=result[i].price%>
+						</div>
+					</li>
+
+				<%}%>
+			</ul>	

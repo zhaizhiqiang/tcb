@@ -1,0 +1,147 @@
+	// 切换颜色和城市
+var pylb = $(".py:eq(0) a");
+
+var pylb1 = $(".py:eq(1) a");
+
+var cslb = document.getElementsByClassName("cs")[0].getElementsByTagName('p');
+var cslb1 = document.getElementsByClassName("cs")[1].getElementsByTagName('p');
+var cs = document.getElementsByClassName("cs")[0];
+for (var i=0; i<pylb.length; i++){
+		pylb[i].index= i;
+		pylb1[i].index= i;
+	pylb.eq(i).on("click",function(){
+		pylb.removeClass("current");
+		$(this).addClass("current");
+			for (var j=0; j<cslb.length; j++){
+				cslb[j].style.display="none"	
+		}
+			cslb[this.index].style.display = "block"
+	})
+
+	pylb1.eq(i).on("click",function(){
+		pylb1.removeClass("current");
+		$(this).addClass("current");
+			for (var j=0; j<cslb1.length; j++){
+				cslb1[j].style.display="none"	
+		}
+			cslb1[this.index].style.display = "block"
+	})
+
+}
+// 显示城市信息 加改变店铺
+	$(".xscs1").attr("code","bei_jing")	
+		
+
+		var as1 = kk.getElementsByTagName('a');
+
+			for (var i=0;i<as1.length;i++){
+		
+			as1[i].onclick=function(){
+				if(this.innerText.length!=1){
+			xscs.innerHTML = this.innerHTML
+			xscs1.innerHTML = this.innerHTML
+			
+			var res = this.getAttribute("code");
+			console.log(res)
+			$(".xscs").attr("code",res)
+			$(".xscs1").attr("code",res)
+
+			// 改变店铺
+					 $.ajax({
+			 	url:"/shop",
+			 	dataType:"json",
+			 	data:{
+			 		city_id:xscs1.getAttribute("code"),
+			 		pn:0,
+			 		pagesize:5
+			 	},
+			 	success:function(data){
+				var  html =baidu.template("dp",data);
+				$("#middle-ml").html(html);	
+			 		
+			 	}
+			 })
+
+				}
+			
+			}
+		}
+切换区县
+var kk2 = document.getElementsByClassName("kk2")[0];
+	var xzqx = document.getElementsByClassName("xzqx")[0];
+	var gbqx = document.getElementsByClassName("gbqx")[0];
+
+	xzqx.onclick = function(){
+
+	kk2.style.display= "block";
+	kk1.style.display="none"
+	$.ajax({
+		url:"http://bang.360.cn/aj/get_area/",
+		data:{
+			citycode: xscs1.getAttribute("code")||"bei_jing"
+		},
+		dataType:"jsonp",//jsonp请求 
+		success:function(data){
+			console.log(data)
+
+		var html = baidu.template("hqqx",data);
+		$(".kk2").html(html);
+	var gbqx = document.getElementsByClassName("gbqx")[0];
+				gbqx.onclick = function(){	
+				kk2.style.display="none"
+				}
+		var res=document.getElementsByClassName("kk2")[0].getElementsByTagName("a");
+		var xsqx = document.getElementsByClassName("xsqx")[0]			
+			for(var i=0; i<res.length;i++){
+				res[i].onclick=function(){
+					xsqx.innerHTML=this.innerText;
+					var res =this.getAttribute("area_id")
+					xsqx.getAttribute("area_id",res)
+			$.ajax({
+			 	url:"/shop",
+			 	dataType:"json",
+			 	data:{
+			 		city_id:xscs1.getAttribute("code"),
+			 		area_id:res,
+			 		pn:0,
+			 		pagesize:5
+			 	},
+			 	success:function(data){
+				var  html =baidu.template("dp",data);
+				$("#middle-ml").html(html);	
+			 		
+			 	}
+			 })
+
+				}
+			}
+
+
+		}
+	})
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var res=document.getElementsByClassName("kk2")[0].getElementsByTagName("a");
+		var xsqx = document.getElementsByClassName("xsqx")[0]			
+			for(var i=0; i<res.length;i++){
+				res[i].onclick=function(){
+					xsqx.innerHTML=this.innerText;
+					var res =this.getAttribute("area_id")
+					xsqx.getAttribute("area_id",res)

@@ -1,0 +1,37 @@
+<h3>城市列表<span>关闭×</span></h3>
+<div class="city-list">
+<ul>
+<li class="rmcs">
+<h4 class="h41">热门</h4>
+	<p>
+	<%for(var i in result.hotcity){%>
+		<a href="javascript:void(0)"    code="<%=result.hotcity[i].code%>
+"><%=result.hotcity[i].name
+%></a>
+	<%}%>
+	</p>
+</li>
+<li>
+<h4>拼音</h4>
+<div class="py">
+	<%for(var n in result.citylist){%>
+		<%if(n=="A"){%>
+			<a href="javascript:void(0)" class="current" ><%=n%></a>  
+		<%}else{%>
+			<a href="javascript:void(0)"><%=n%></a>
+			<%}%>
+		<%}%>
+</div>
+<div class="cs">
+	<%for(var i in result.citylist){%> 
+			<p class="<%=i%>">
+				<%for(var j in result.citylist[i]){%>
+					<a href="javascript:void(0)"  code="<%=result.citylist[i][j].code%>
+" data-cityid="" class="csbq"><%=result.citylist[i][j].name%></a>
+				<%}%>
+			</p>
+		<%}%>
+</div>
+</li>
+</ul>
+</div>		
